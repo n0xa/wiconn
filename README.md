@@ -24,7 +24,9 @@ with nopass rules for dhclient, ifconfig and pkill. At a bare minimum,
 the below lines should be added to the end of /etc/doas.conf:
 
 permit nopass :wheel as root cmd /usr/bin/pkill args dhclient
+
 permit nopass :wheel as root cmd /sbin/ifconfig
+
 permit nopass :wheel as root cmd /sbin/dhclient
 
 Enjoy!

@@ -108,7 +108,7 @@ scan_wifi(){
       flags=$(echo ${line} | awk '{print $NF}')
       echo "${ssid}|${sn}|${chan}|${bssid}|${flags}" \
         | awk -F"|" '{ printf "%-'${firstcol}'.'${firstcol}'s | %4.4s | %2.2s | %17.17s | %-'${lastcol}'.'${lastcol}'s\n", $1, $2, $3, $4, $5}' \
-        | sed -E "s/(.*privacy.*)/\[1;40m\1\[0m/" \
+        | sed -E "s/(.*privacy.*)/\[0m\1\[0m/" \
         | sed -E "s/("${current}".*"${cbssid}".*)/\[1;42m\1\[0m/" \
         | sed -E "s/(.*)/\[1;41m\1\[0m/"  
     done) | less -F -E -X -r -z ${lines}

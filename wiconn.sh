@@ -90,7 +90,12 @@ scan_wifi(){
     columns=$(tput cols)
     if [ ${columns} -gt 99 ]
     then
-      firstcol=${netlength}
+      if [ "${netlength}" -lt 15 ]
+      then 
+        firstcol=15
+      else
+        firstcol=${netlength}
+      fi
     else
       # Static SSID Width of 15 chars, truncating some on narrow terminals
       firstcol=15

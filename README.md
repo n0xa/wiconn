@@ -1,6 +1,7 @@
 # wiconn
 A text-based 802.11 wireless network manager for OpenBSD
 
+## Introduction
 Written in Bourne shell and relying only on tools available in the OpenBSD
 base distribution, wiconn strives for ease of use without external
 dependencies while remaining aesthetically-pleasing in any terminal or 
@@ -17,16 +18,26 @@ Note that for the time being, these keys are stored in the clear in
 ~/.wiconn which is created with mode 0600 (only your user can read and 
 write to the file). I suppose if this is good enough for your 
 hostname.if(5) file and your private SSH keys, it should be good enough
-for this.
+for this. 
 
-Wiconn assumes you are in the wheel group and have doas(1) configured 
-with nopass rules for dhclient, ifconfig and pkill. At a bare minimum, 
-the below lines should be added to the end of /etc/doas.conf:
+## Setup
+Wiconn has to do a few things as root, and assumes you are in the wheel
+group and have doas(1) configured with nopass rules for dhclient, 
+ifconfig and pkill. To keep doas from incessantly prompting or failing
+with errors, at a bare minimum, the below lines should be added 
+to the end of /etc/doas.conf:
 
+```
 permit nopass :wheel as root cmd /usr/bin/pkill args dhclient
-
 permit nopass :wheel as root cmd /sbin/ifconfig
-
 permit nopass :wheel as root cmd /sbin/dhclient
+```
+
+## Colors and display
+If you're currently connected to a network in the list, it will be
+shown with a green highlight background. Open networks are displayed
+with a red background. ANSI color escape sequences are hard-coded, 
+which might mess with certain terminals. It seems to work great in
+most X11 terminals and on the wscons(4) console in text mode.
 
 Enjoy!

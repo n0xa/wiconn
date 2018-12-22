@@ -3,16 +3,16 @@ A text-based 802.11 wireless network manager for OpenBSD
 
 ## Walk through
 If you run wiconn without any arguments, it will scan for wireless networks and display them in a list. The network you're connected to will show up with a green background. Open networks are shown with a red background.
-![wiconn.sh network list](http://stuff.h-i-r.net/wiconn/wc1.png)
+
 
 If you have a saved network in ~/.wiconn, you can simply run wiconn.sh with the network name as the first argument.
-![wiconn.sh direct connection](http://stuff.h-i-r.net/wiconn/wc0.png)
+
 
 Wiconn can save a network you've connected to, and can save the BSSID to protect you from most evil twin attacks.
-![wiconn.sh save connection](http://stuff.h-i-r.net/wiconn/wc2.png)
+
 
 The ~/.wiconn file can be used to set the default wireless interface, and also stores wireless network names, WPA keys and (optionally) BSSIDs. It should be readable and writable only by your user (chmod 0600). 
-![~/.wiconn rc file](http://stuff.h-i-r.net/wiconn/wc3.png)
+
 
 ## About
 Written in Bourne shell and relying only on tools available in the OpenBSD

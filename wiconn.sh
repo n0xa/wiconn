@@ -121,11 +121,12 @@ scan_wifi(){
 }
 
 check_ssids(){
-  if [ $(grep ^${nwid}\| ~/.wiconn) ]
+  res=$(grep -s ^"${nwid}"\| ~/.wiconn)
+  if [ $? = 0 ]
   then
     echo "Found saved wifi"
-    tbssid=$(grep ^${nwid}\| ~/.wiconn | cut -f3 -d\|)
-    wpakey=$(grep ^${nwid}\| ~/.wiconn | cut -f2 -d\|)
+    tbssid=$(echo "${res}" | cut -f3 -d\|)
+    wpakey=$(echo "${res}" | cut -f2 -d\|)
     connect_wifi
   fi
 }
@@ -187,15 +188,16 @@ connect_wifi(){
   then
     echo "Attempting to connect to \033[1m${nwid}\033[0m as an open network..."
     doas /usr/bin/pkill dhclient
-    doas /sbin/ifconfig ${dev} -wpakey nwid ${nwid} ${bssid}
+    doas /sbin/ifconfig ${dev} -wpakey nwid "${nwid}" "${bssid}"
     doas /sbin/dhclient ${dev}
   else
     echo "Attempting to connect to \033[1m${nwid}\033[0m with WPA key..."
     doas /usr/bin/pkill dhclient
-    doas /sbin/ifconfig ${dev} nwid ${nwid} wpakey ${wpakey} ${bssid}
+    doas /sbin/ifconfig ${dev} nwid "${nwid}" wpakey "${wpakey}" "${bssid}"
     doas /sbin/dhclient ${dev} 
   fi 
-  if [ $(grep ^${nwid}\| ~/.wiconn) ]
+  grep -s ^"${nwid}"\| ~/.wiconn  > /dev/null
+  if [ $? = 0 ]
   then
     exit 0
   else
@@ -244,11 +246,12 @@ then
   setup_wifi
 fi
 
-if [ `grep ^${nwid}\| ~/.wiconn` ]
+res=$(grep ^"${nwid}"\| ~/.wiconn)
+if [ $? = 0 ]
 then
   echo "Found saved access point"
-  tbssid=`grep ^${nwid}\| ~/.wiconn | cut -f3 -d\|`
-  wpakey=`grep ^${nwid}\| ~/.wiconn | cut -f2 -d\|`
+  tbssid=$(echo "$res" | cut -f3 -d\|)
+  wpakey=$(echo "$res" | cut -f2 -d\|)
   connect_wifi
 fi
 

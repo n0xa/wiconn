@@ -2,7 +2,7 @@
 A text-based 802.11 wireless network manager for OpenBSD
 
 ## Archive
-As of OpenBSD 6.4, this application is obsolete. A new feature will allow wireless to join any of multiple wireless networks defined in /etc/hostname.if(5).
+As of OpenBSD 6.4, this application is obsolete. A new feature allows wifi to join any of multiple wireless networks defined in /etc/hostname.if(5).
 
 Thus, I am archiving this project. It will continue to exist in read-only mode for the forseeable time being, just in case.
 

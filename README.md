@@ -1,6 +1,11 @@
 # wiconn
 A text-based 802.11 wireless network manager for OpenBSD
 
+## Archive
+As of OpenBSD 6.4, this application is obsolete. A new feature will allow wireless to join any of multiple wireless networks defined in /etc/hostname.if(5).
+
+Thus, I am archiving this project. It will continue to exist in read-only mode for the forseeable time being, just in case.
+
 ## Walk through
 If you run wiconn without any arguments, it will scan for wireless networks and display them in a list. The network you're connected to will show up with a green background. Open networks are shown with a red background.
 
